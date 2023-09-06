@@ -6,9 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/make_board
     username: root
-    password: raccon@@
-  thymeleaf:
-    cache: false
+    password: 1234
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
