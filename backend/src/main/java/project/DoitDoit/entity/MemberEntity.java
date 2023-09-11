@@ -28,13 +28,11 @@ public class MemberEntity {
     @Column
     private String password;
 
-    @Column
-    private String univ;
-
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
         return MemberEntity.builder()
                 .name(memberDTO.getName())
-                .univ(memberDTO.getUniv())
+                .user_id(memberDTO.getUser_id())
+                .password(memberDTO.getPassword())
                 .build();
     }
 }

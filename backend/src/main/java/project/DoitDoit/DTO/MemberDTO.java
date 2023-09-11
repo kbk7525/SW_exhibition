@@ -16,12 +16,12 @@ public class MemberDTO {
     private String name;
     private String user_id;
     private String password;
-    private String univ;
 
     public static MemberDTO toMemberDTO(MemberEntity memberEntity) {
         return MemberDTO.builder()
                 .name(memberEntity.getName())
-                .univ(memberEntity.getUniv())
+                .user_id(memberEntity.getUser_id())
+                .password(memberEntity.getPassword())
                 .build();
     }
 }
