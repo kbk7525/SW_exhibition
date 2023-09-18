@@ -1,37 +1,36 @@
 package project.DoitDoit.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import project.DoitDoit.DTO.MemberDTO;
+import lombok.*;
+import project.DoitDoit.dto.MemberDTO;
 
 @Entity
-@Table
-@Getter
-@Builder
+@Table(name = "member")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class MemberEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long member_id;
+    private Long memberId;
 
     @Column
     private String name;
 
     @Column
-    private String user_id;
+    private String userId;
 
     @Column
     private String password;
 
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
         return MemberEntity.builder()
+                .memberId(memberDTO.getMemberId())
                 .name(memberDTO.getName())
-                .user_id(memberDTO.getUser_id())
+                .userId(memberDTO.getUserId())
                 .password(memberDTO.getPassword())
                 .build();
     }

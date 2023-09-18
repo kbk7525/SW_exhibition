@@ -1,38 +1,24 @@
 package project.DoitDoit.service;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import project.DoitDoit.DTO.MemberDTO;
+import project.DoitDoit.dto.MemberDTO;
 import project.DoitDoit.entity.MemberEntity;
 import project.DoitDoit.repository.MemberRepository;
+
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    //회원가입
-    public void save(MemberDTO memberDTO) {
-        MemberEntity memberEntity = MemberEntity.toMemberEntity(memberDTO);
-        memberRepository.save(memberEntity);
-    }
-
-    public MemberDTO login(MemberDTO memberDTO) {
-        Optional<MemberEntity> byId = memberRepository.findById(memberDTO.getMember_id());
-        if(byId.isPresent()) {
-            MemberEntity memberEntity = byId.get();
-            if(memberEntity.getPassword().equals(memberDTO.getPassword())) {
-                MemberDTO dto = MemberDTO.toMemberDTO(memberEntity);
-                return dto;
-            }
-            else {
-                return null;
-            }
+    public boolean authenticateUser(String userId, String password) {
+        MemberEntity member = memberRepository.findByUserId(userId);
+        if(member != null && password.equals(member.getPassword())) {
+            return true;
         }
-        else {
-            return null;
-        }
+        return false;
     }
 }

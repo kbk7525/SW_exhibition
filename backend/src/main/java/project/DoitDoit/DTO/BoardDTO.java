@@ -1,4 +1,4 @@
-package project.DoitDoit.DTO;
+package project.DoitDoit.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,21 +14,21 @@ import java.util.Date;
 @AllArgsConstructor
 public class BoardDTO {
 
-    private Long board_id;
+    private Long boardId;
     private String title;
     private String content;
-    private Long member_id;
+    private Long memberId;
     private Boolean favorites;
-    private Date d_day;
+    private Date dDay;
 
     public static BoardDTO toBoardDTO(BoardEntity boardEntity) {
         return BoardDTO.builder()
-                .board_id(boardEntity.getBoard_id())
-                .member_id(boardEntity.getMember_id())
+                .boardId(boardEntity.getBoardId())
+                .memberId(boardEntity.getMemberId())
                 .title(boardEntity.getTitle())
                 .content(boardEntity.getContent())
                 .favorites(boardEntity.getFavorites())
-                .d_day(boardEntity.getD_day())
+                .dDay(boardEntity.getDDay())
                 .build();
     }
 }

@@ -6,4 +6,5 @@ import project.DoitDoit.entity.MemberEntity;
 
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
+    MemberEntity findByUserId(String userId);
 }

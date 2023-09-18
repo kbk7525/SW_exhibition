@@ -1,26 +1,25 @@
-package project.DoitDoit.DTO;
+package project.DoitDoit.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import project.DoitDoit.entity.MemberEntity;
 
 @Builder
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberDTO {
 
-    private Long member_id;
+    private Long memberId;
+    private String userId;
     private String name;
-    private String user_id;
     private String password;
 
     public static MemberDTO toMemberDTO(MemberEntity memberEntity) {
         return MemberDTO.builder()
+                .memberId(memberEntity.getMemberId())
                 .name(memberEntity.getName())
-                .user_id(memberEntity.getUser_id())
+                .userId(memberEntity.getUserId())
                 .password(memberEntity.getPassword())
                 .build();
     }
