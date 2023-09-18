@@ -1,6 +1,7 @@
 package project.DoitDoit.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,6 @@ public class MemberController {
     public ResponseEntity<String> login(@RequestBody MemberResDTO memberResDTO) {
         String userId = memberResDTO.getUserId();
         String password = memberResDTO.getPassword();
-
         if(memberService.authenticateUser(userId, password)) {
             return ResponseEntity.ok("로그인 성공");
         }

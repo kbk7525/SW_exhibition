@@ -35,15 +35,4 @@ public class BoardEntity {
 
     @Column
     private Date dDay;
-
-    public static BoardEntity toBoardEntity(BoardDTO boardDTO) {
-        return BoardEntity.builder()
-                .boardId(boardDTO.getBoardId())
-                .memberId(boardDTO.getMemberId())
-                .title(boardDTO.getTitle())
-                .content(boardDTO.getContent())
-                .favorites(boardDTO.getFavorites())
-                .dDay(boardDTO.getDDay())
-                .build();
-    }
 }

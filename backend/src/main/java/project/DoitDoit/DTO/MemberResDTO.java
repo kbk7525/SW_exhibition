@@ -10,6 +10,7 @@ import project.DoitDoit.entity.MemberEntity;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class MemberResDTO {
 
     private String userId;

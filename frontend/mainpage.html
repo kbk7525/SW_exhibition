@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="script.js"></script>
+    
     <script src="https://kit.fontawesome.com/6e7455cbd0.js" crossorigin="anonymous"></script>
     <style>
         body {
             background: #FBE7E4;
             margin: 0 auto;
         }
-
+        /*메인 페이지 */
         .mainpage {
             margin: 0 auto;
             width: 1292px;
@@ -66,10 +66,11 @@
             margin-left: 300px;
             font-size: 30px;
         }
-        .mainpage .main_right_section>hr{
+
+        .mainpage .main_right_section>hr {
             width: 500px;
             margin-top: -20px;
-            
+
         }
 
         .mainpage>section span {
@@ -95,6 +96,8 @@
 
         }
 
+         /*오늘 할일 */
+
         .todaylist {
             margin: 0 auto;
             width: 600px;
@@ -103,41 +106,54 @@
             border: 2px solid #D7D0D0;
             border-radius: 30px;
             position: fixed;
-            top: 10%; 
+            top: 10%;
             left: 50%;
             transform: translate(-50%, -50%);
             display: flex;
             flex-direction: column;
-            
+
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: all 0.5s ease-in-out;
+            transition: all 0.3s ease-in-out;
             overflow: hidden;
             align-items: center;
 
         }
-        .todaylist.active{
+
+        .todaylist.active {
             top: 50%;
             height: 220px;
             opacity: 1;
         }
-        .todaylist>header{
+        .todaylist>section>input:focus{
+            outline: none;
+        }
+
+        .todaylist>header {
             display: flex;
             justify-content: space-between;
             width: 500px;
             align-items: center;
             margin-bottom: 10px;
-            
+
         }
-        .todaylist>header>div{
-            color: #d3cfcf;
+
+        .todaylist>header>input {
             
+            border: none;
             text-align: left;
             font-weight: 700;
             font-size: 20px;
             margin-top: 10px;
             margin-bottom: 0;
+        }
+        .todaylist>header>input::placeholder{
+            color: #d3cfcf;
+           
+        }
+        .todaylist>header>input:focus{
+            outline: none;
         }
 
         .todaylist .todaylist_write {
@@ -147,27 +163,31 @@
             background: #FFFEFE;
             height: 100px;
             margin-bottom: 10px;
-           
+
         }
-        .todaylist>footer{
+
+        .todaylist>footer {
             display: flex;
             justify-content: space-between;
             width: 500px;
             margin-bottom: 10px;
-            
-        }
-        .todaylist>footer>*{
-           width: 100px;
-           height: 30px;
-           border-radius: 10px;
-           
 
-           
         }
-        .todaylist>footer>input{
+
+        .todaylist>footer>* {
+            width: 100px;
+            height: 30px;
+            border-radius: 10px;
+
+
+
+        }
+
+        .todaylist>footer>input {
             border: 1px solid#d3cfcf;
         }
-        .todaylist>footer>button{
+
+        .todaylist>footer>button {
             border: none;
             background: #DE483A;
             color: white;
@@ -181,6 +201,261 @@
             color: #d3cfcf;
             font-weight: 600;
 
+        }
+         /*달력 */
+
+        .calender_main {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 550px;
+            height: 0px;
+            border: 1px solid rgb(143, 142, 142);
+            border-radius: 30px;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+
+        }
+
+        table {
+            border-collapse: separate;
+            /* 테두리 간격을 사용하도록 설정 */
+            border-spacing: 20px;
+            /* 가로 및 세로 간격 설정 */
+        }
+
+        .mod_calender_section {
+            margin: 0 auto;
+            
+
+        }
+        .mod_calender_section> .calender_head td{
+            font-size: 23px;
+            font-weight: 600;
+            background-color: rgb(143, 142, 142);
+            text-align: center;
+            height: 50px;
+            border-radius: 10px;
+        }
+        .mod_calender_section> .calender_body td {
+            font-size: 15px;
+            padding: 16px;
+            background-color: #DE483A;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 600;
+
+        }
+        .mod_calender_head{
+            height: 45px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 45px;
+            
+        }
+        
+        .calender_main > header{
+            display: flex;
+            justify-content: space-between;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            align-items: center;
+            background-color: #DE483A;
+        }
+        .calender_main.active{
+            height: 530px;
+            opacity: 1;
+        }
+        .calender_select {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 550px;
+            height: 0px;
+            border: 1px solid rgb(143, 142, 142);
+            border-radius: 30px;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+
+        }
+        .calender_select.active{
+            height: 530px;
+            opacity: 1;
+        }
+        .calender_select > header{
+            display: flex;
+            justify-content: space-between;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            align-items: center;
+            background-color: #DE483A;
+        }
+         /*달력 선택 */
+        .mod_calender_select_head{
+            height: 45px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 45px;
+            
+        }
+
+         /*그림일기 */
+         .drawing_list_main{
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 700px;
+            height: 0px;
+            border: 1px solid rgb(143, 142, 142);
+            border-radius: 30px;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+         }
+         .drawing_list_main.active{
+            opacity: 1;
+            height: 700px;
+         }
+         .drawing_list_main>header{
+            background-color: #DE483A;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+         }
+         .drawing_list_main>section{
+            height: 400px;
+         }
+         .drawing_list_main>footer{
+            display: flex;
+            justify-content: end;
+         }
+         .drawing_list_main .drawing_button{
+            width: 150px;
+            height: 60px;
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+            background: #DE483A;
+            margin-right: 30px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            border: none;
+         }
+         /*그림 일기 모달*/
+         .mod_drawing_list {
+            margin: 0 auto;
+            width: 600px;
+            height: 0px;
+            padding: 20px;
+            background: #FFF;
+            border: 2px solid #D7D0D0;
+            border-radius: 30px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+            align-items: center;
+
+        }
+
+        .mod_drawing_list.active {
+            height: 600px;
+            opacity: 1;
+        }
+        .mod_drawing_list>section>input:focus{
+            outline: none;
+        }
+
+        .mod_drawing_list>header {
+            display: flex;
+            justify-content: end;
+            width: 500px;
+            align-items: center;
+            margin-bottom: 10px;
+
+        }
+
+
+        .mod_drawing_list .mod_drawing_list_write {
+            width: 500px;
+            border-radius: 20px;
+            border: 1px solid #d3cfcf;
+            background: #FFFEFE;
+            height: 300px;
+            margin-bottom: 10px;
+
+        }
+
+        .mod_drawing_list>footer {
+            display: flex;
+            justify-content: space-between;
+            width: 500px;
+            margin-bottom: 10px;
+
+        }
+
+        .mod_drawing_list>footer>* {
+            width: 100px;
+            height: 30px;
+            border-radius: 10px;
+
+
+
+        }
+
+        .mod_drawing_list>footer>input {
+            border: 1px solid#d3cfcf;
+        }
+
+        .mod_drawing_list>footer>button {
+            border: none;
+            background: #DE483A;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        input[type='date']::before {
+            content: attr(data-placeholder);
+            width: 100%;
+            color: #d3cfcf;
+            font-weight: 600;
+
+        }
+        .drawing_list_sticker{
+            display: flex;
+            justify-content: space-between;
+            width: 500px;
+        }
+        .drawing_list_sticker > div{
+            width: 50px;
+            height: 50px;
+            background: #DE483A;
         }
     </style>
 </head>
@@ -199,16 +474,16 @@
         <section>
             <div class="main_left_section">
                 <div class="first_section">
-                    <i class="fa-regular fa-clipboard" ></i>
+                    <i class="fa-regular fa-clipboard"></i>
                     <span onclick="open_todaylist()">오늘 할 일</span>
                 </div>
                 <div class="second_section">
                     <i class="fa-regular fa-calendar-days"></i>
-                    <span>달력</span>
+                    <span onclick="opencalender()">달력</span>
                 </div>
                 <div class="third_section">
                     <i class="fa-solid fa-pen"></i>
-                    <span>그림일기</span>
+                    <span onclick="open_drawing_list()">그림일기</span>
                 </div>
                 <div class="fourth_section">
                     <i class="fa-regular fa-bookmark"></i>
@@ -220,22 +495,125 @@
                 <hr>
             </div>
         </section>
-
-        <div class="todaylist">
+        <!--오늘 할 일 모달창-->
+        <form class="todaylist">
             <header>
-                <div>작업이름</div>
+                <input type="text" placeholder="작업이름" id="taskName" required>
                 <i class="fa-solid fa-xmark" style="color: black ;" onclick="close_todaylist()"></i>
             </header>
             <section>
-                <input type="text" id="todaylist_write" class="todaylist_write">
+                <input type="text" id="todaylist_write" class="todaylist_write" required>
             </section>
             <footer>
-                <input type="date" id="todaylist_date" class="todaylist_date" data-placeholder="마감날짜">
-                <button class="todaylist_upload">작업 추가</button>
+                <input type="date" id="todaylist_date" class="todaylist_date" data-placeholder="마감날짜" required>
+                <button class="todaylist_upload" >작업 추가</button>
             </footer>
+        </form>
+        
+        <!--달력 모달창-->
 
+        <div class="calender_main">
+            <header>
+                <div class="mod_calender_head">
+
+                </div>
+                <div>   
+                    <i class="fa-solid fa-xmark" onclick="closecalender()" ></i>
+                </div>
+            </header>
+            <section>
+                <table class="mod_calender_section">
+                    <thead class="calender_head">
+                        <tr>
+                            <td onclick="open_calender_select()" >일</td>
+                            <td >월</td>
+                            <td >화</td>
+                            <td>수</td>
+                            <td >목</td>
+                            <td >금</td>
+                            <td >토</td>
+                        </tr>
+                    </thead>
+                    <tbody class="calender_body">
+
+                    </tbody>
+                </table>
+            </section>
         </div>
-    </div>
-</body>
+        <!--달력 선택 모달-->
+        <div class="calender_select">
+            <header>
+                <div class="mod_calender_select_head">
+                    
+                </div>
+                <div>   
+                    <i class="fa-solid fa-xmark" onclick="close_calender_select()"></i>
+                </div>
+                
+            </header>
+            <section>
+                <div class="mod_calender_select_section">
 
-</html>
+                </div>
+                
+            </section>
+        </div>
+         <!--그림일기-->
+         <div class="drawing_list_main">
+            <header>
+                <div style="padding: 20px; color: white; font-weight: 600; font-size: 20px;">
+                    그림 일기
+                </div>
+                <div>   
+                    <i class="fa-solid fa-xmark" onclick="close_drawing_list()" style="padding: 20px;"></i>
+                </div>
+                
+            </header>
+            <section>
+                <div class="drawing_list_main_section">
+                    
+                </div>
+                
+            </section>
+            <footer>
+                <div class="drawing_list_main_footer">
+                   <button class="drawing_button" onclick="open_mod_drawing_list()">일기 추가</button>
+                </div>
+            </footer>
+        </div>
+        <!--그림일기 모달-->
+        <form class="mod_drawing_list">
+            <header>
+                
+                <i class="fa-solid fa-xmark" style="color: black ;" onclick="close_mod_drawing_list()"></i>
+            </header>
+            <section>
+                <input type="text" id="mod_drawing_list_write" class="mod_drawing_list_write" required>
+            </section>
+            <footer>
+                <input type="date" id="mod_drawing_list_date" class="mod_drawing_list_date" data-placeholder="마감날짜" required>
+                <button class="upload_drawing_list" >등록</button>
+            </footer>
+            <div class="drawing_list_sticker">
+                <div id="sticker1">
+
+                </div>
+                <div id="sticker2">
+
+                </div>
+                <div id="sticker3">
+
+                </div>
+                
+            </div>
+        </form>
+
+
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const currentDate = new Date();
+        createCalendar(currentDate.getFullYear(), currentDate.getMonth() + 1);
+    </script>
+</body>
+</html> 
