@@ -496,7 +496,7 @@
             </div>
         </section>
         <!--오늘 할 일 모달창-->
-        <form class="todaylist">
+        <form class="todaylist" onsubmit="submitForm(event)">
             <header>
                 <input type="text" placeholder="작업이름" id="taskName" required>
                 <i class="fa-solid fa-xmark" style="color: black ;" onclick="close_todaylist()"></i>
