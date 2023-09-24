@@ -67,54 +67,73 @@ document.getElementById("loginButton").addEventListener("click", async function 
         });
 });
 function submitForm(event) {
-        event.preventDefault();
+    event.preventDefault();
 
-        // 입력 필드에서 데이터 가져오기
-        const taskName = document.getElementById("taskName").value;
-        const todaylistWrite = document.getElementById("todaylist_write").value;
-        const todaylistDate = document.getElementById("todaylist_date").value;
-        const taskNameInput = document.getElementById("taskName");
-        const todaylistWriteInput = document.getElementById("todaylist_write");
-        const todaylistDateInput = document.getElementById("todaylist_date");
+    // 입력 필드에서 데이터 가져오기
+    const taskName = document.getElementById("taskName").value;
+    const todaylistWrite = document.getElementById("todaylist_write").value;
+    const todaylistDate = document.getElementById("todaylist_date").value;
+    const taskNameInput = document.getElementById("taskName");
+    const todaylistWriteInput = document.getElementById("todaylist_write");
+    const todaylistDateInput = document.getElementById("todaylist_date");
 
-        // 서버로 보낼 데이터 생성 (JSON 형식 또는 다른 형식으로도 가능)
-        const data = {
-            title: taskName,
-            content: todaylistWrite,
-            dDay: todaylistDate,
-        };
-
-        // 서버 URL 설정 (실제 백엔드 서버 URL로 대체해야 합니다)
-        const serverUrl = "http://localhost:8082/mainpage/save"; // 예시 URL
-
-        // Fetch API를 사용하여 서버로 POST 요청 보내기
-        fetch(serverUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json; charset=UTF-8", // JSON 형식으로 데이터 전송
-            },
-            body: JSON.stringify(data), // JSON 데이터 문자열로 변환하여 전송
-        })
-            .then((responseData) => {
-                // 서버 응답에 따른 처리
-                if (responseData.status === 200) {
-                    alert("작업 추가 성공");
-                    // 다음 로직을 추가하세요 (예: 페이지 리디렉션)
-                    taskNameInput.value = "";
-                    todaylistWriteInput.value = "";
-                    todaylistDateInput.value = "";
-                    const _mod_todaylist = document.querySelector(".todaylist")
-                    _mod_todaylist.classList.remove("active")
-
-                } else {
-                    alert("작업 추가 실패");
-                }
-            })
-            .catch((error) => {
-                console.error("에러 발생:", error);
-                alert("작업 추가 요청 중 오류가 발생했습니다.");
-            });
+    // 서버로 보낼 데이터 생성 (JSON 형식 또는 다른 형식으로도 가능)
+    const data = {
+        title: taskName,
+        content: todaylistWrite,
+        dDay: todaylistDate,
     };
+
+    // 서버 URL 설정 (실제 백엔드 서버 URL로 대체해야 합니다)
+    const serverUrl = "http://localhost:8082/mainpage/save"; // 예시 URL
+
+    // Fetch API를 사용하여 서버로 POST 요청 보내기
+    fetch(serverUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8", // JSON 형식으로 데이터 전송
+        },
+        body: JSON.stringify(data), // JSON 데이터 문자열로 변환하여 전송
+    })
+        .then((responseData) => {
+            // 서버 응답에 따른 처리
+            if (responseData.status === 200) {
+                alert("작업 추가 성공");
+                // 다음 로직을 추가하세요 (예: 페이지 리디렉션)
+                taskNameInput.value = "";
+                todaylistWriteInput.value = "";
+                todaylistDateInput.value = "";
+                const _mod_todaylist = document.querySelector(".todaylist")
+                _mod_todaylist.classList.remove("active")
+
+            } else {
+                alert("작업 추가 실패");
+            }
+        })
+        .catch((error) => {
+            console.error("에러 발생:", error);
+            alert("작업 추가 요청 중 오류가 발생했습니다.");
+        });
+};
+
+/* 서버에 데이터 요청*/
+const serverUrl = "http://localhost:8082/mainpage/save";
+fetch(serverUrl)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("서버 응답 오류");
+        }
+        return response.json(); // JSON 형식의 응답 데이터를 파싱
+    })
+    .then(data => {
+        // 서버로부터 받은 데이터(data)를 처리합니다.
+        console.log(data);
+    })
+    .catch(error => {
+        console.error("에러 발생:", error);
+    });
+
+
 
 function open_todaylist() {
     const _mod_todaylist = document.querySelector(".todaylist")
