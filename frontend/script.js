@@ -3,6 +3,9 @@
 //     id: "20196630",
 //     password: "gunsang11@"
 // }
+
+
+
 function open_mod_newlogin() {
     const _mod_newloginbox = document.querySelector(".mod_newloginbox");
     _mod_newloginbox.classList.add("active"); // active 클래스 추가
@@ -24,6 +27,12 @@ function close_mod_newlogin() {
 //         alert("로그인 실패");
 //     }
 // }
+
+
+
+
+
+
 // 로그인 버튼 클릭 이벤트 리스너
 document.getElementById("loginButton").addEventListener("click", async function () {
     // 입력 필드에서 아이디와 비밀번호 가져오기
@@ -66,6 +75,13 @@ document.getElementById("loginButton").addEventListener("click", async function 
             alert("로그인 요청 중 오류가 발생했습니다.");
         });
 });
+
+
+
+
+
+
+//오늘 할 일 모달창에서 데이터를 보내는 함수
 function submitForm(event) {
     event.preventDefault();
 
@@ -116,6 +132,66 @@ function submitForm(event) {
         });
 };
 
+
+
+
+
+
+
+//그림일기 모달에서 데이터를 보내는 함수
+function submitForm2(event) {
+    event.preventDefault();
+
+    // 입력 필드에서 데이터 가져오기
+    const DrawingListInput = document.querySelector(".mod_drawing_list_write").value;
+    const DrawingListDate = document.querySelector(".mod_drawing_list_date").value;
+    const DrawingListSticker = document.querySelector(".mod_drawing_list_sticker");
+    const DrawingListInputFocus = document.querySelector(".mod_drawing_list_write");
+    const DrawingListDateFocus = document.querySelector(".mod_drawing_list_date");
+
+    // 서버로 보낼 데이터 생성 (JSON 형식 또는 다른 형식으로도 가능)
+    const data = {
+        DLI: DrawingListInput,
+        DLD: DrawingListDate,
+        DLS: DrawingListSticker,
+    };
+
+    // 서버 URL 설정 (실제 백엔드 서버 URL로 대체해야 합니다)
+    const serverUrl = "http://localhost:8082/mainpage/save"; // 예시 URL
+
+    // Fetch API를 사용하여 서버로 POST 요청 보내기
+    fetch(serverUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8", // JSON 형식으로 데이터 전송
+        },
+        body: JSON.stringify(data), // JSON 데이터 문자열로 변환하여 전송
+    })
+        .then((responseData) => {
+            // 서버 응답에 따른 처리
+            if (responseData.status === 200) {
+                alert("작업 추가 성공");
+                // 다음 로직을 추가하세요 (예: 페이지 리디렉션)
+                DrawingListInputFocus.value == "";
+                DrawingListDateFocus.value == "";
+                const mod_drawing_list = document.querySelector(".mod_drawing_list");
+                mod_drawing_list.classList.remove("active");
+                
+
+            } else {
+                alert("작업 추가 실패");
+            }
+        })
+        .catch((error) => {
+            console.error("에러 발생:", error);
+            alert("작업 추가 요청 중 오류가 발생했습니다.");
+        });
+};
+
+
+
+
+
 /* 서버에 데이터 요청*/
 const serverUrl = "http://localhost:8082/mainpage/save";
 fetch(serverUrl)
@@ -143,6 +219,11 @@ function close_todaylist() {
     const _mod_todaylist = document.querySelector(".todaylist")
     _mod_todaylist.classList.remove("active")
 }
+
+
+
+
+
 /*달력 위에 년 월 */
 const now = new Date();
 const options = { year: 'numeric', month: 'long' };
@@ -194,6 +275,12 @@ function createCalendar(year, month) {
 
     }
 }
+
+
+
+
+
+
 function opencalender() {
     const modCalender = document.querySelector(".calender_main");
     modCalender.classList.add("active");
@@ -203,6 +290,10 @@ function closecalender() {
     const modCalender = document.querySelector(".calender_main");
     modCalender.classList.remove("active");
 }
+
+
+
+
 
 /*작업 등록 버튼을 했을 시 창이 부드럽게 닫히게 */
 document.querySelector(".todaylist_upload").addEventListener("click", function (event) {
@@ -226,6 +317,11 @@ document.querySelector(".todaylist_upload").addEventListener("click", function (
         todaylistDateInput.value = "";
     }
 });
+
+
+
+
+
 function open_calender_select() {
     const _mod_todaylist = document.querySelector(".calender_select");
     _mod_todaylist.classList.add("active");
