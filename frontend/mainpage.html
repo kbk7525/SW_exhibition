@@ -194,14 +194,6 @@
             font-size: 15px;
             font-weight: 600;
         }
-
-        input[type='date']::before {
-            content: attr(data-placeholder);
-            width: 100%;
-            color: #d3cfcf;
-            font-weight: 600;
-
-        }
          /*달력 */
 
         .calender_main {
@@ -505,7 +497,7 @@
                 <input type="text" id="todaylist_write" class="todaylist_write" required>
             </section>
             <footer>
-                <input type="date" id="todaylist_date" class="todaylist_date" data-placeholder="마감날짜" required>
+                <input type="date" id="todaylist_date" class="todaylist_date" required>
                 <button class="todaylist_upload" >작업 추가</button>
             </footer>
         </form>
