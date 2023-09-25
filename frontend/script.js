@@ -101,7 +101,7 @@ function submitForm(event) {
     const data = {
         title: taskName,
         content: todaylistWrite,
-        dDay: formattedDate,
+        today: formattedDate,
     };
     console.log(data);
     const serverUrl = "http://localhost:8082/mainpage/save";
@@ -192,7 +192,7 @@ function submitForm2(event) {
 
 
 /* 서버에 데이터 요청*/
-const serverUrl = "http://localhost:8082/mainpage/save";
+const serverUrl = "http://localhost:8082/mainpage";
 fetch(serverUrl)
     .then(response => {
         if (!response.ok) {

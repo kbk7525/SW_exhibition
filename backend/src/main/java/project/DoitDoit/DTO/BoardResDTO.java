@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import project.DoitDoit.entity.BoardEntity;
 
 import java.util.Date;
 
@@ -17,7 +18,15 @@ import java.util.Date;
 public class BoardResDTO {
     private String title;
     private String content;
+    private String today;
 
-    @Temporal(TemporalType.DATE)
-    private Date dDay;
+    public BoardEntity toEntity() {
+        return BoardEntity.builder()
+                .title(title)
+                .content(content)
+                .today(today)
+                .build();
+    }
+
+
 }

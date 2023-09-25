@@ -22,17 +22,11 @@ public class BoardEntity {
     private Long boardId;
 
     @Column
-    private Long memberId;
-
-    @Column
     private String title;
 
     @Column
     private String content;
 
     @Column
-    private Boolean favorites;
-
-    @Column
-    private Date dDay;
+    private String today;
 }

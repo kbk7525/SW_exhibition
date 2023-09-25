@@ -7,6 +7,9 @@ import project.DoitDoit.dto.BoardResDTO;
 import project.DoitDoit.entity.BoardEntity;
 import project.DoitDoit.repository.BoardRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BoardService {
@@ -15,11 +18,17 @@ public class BoardService {
 
     //글쓰기
     public void save(BoardResDTO boardResDTO) {
-        BoardEntity boardEntity = BoardEntity.builder()
-                .title(boardResDTO.getTitle())
-                .content(boardResDTO.getContent())
-                .dDay(boardResDTO.getDDay())
-                .build();
+        BoardEntity boardEntity = boardResDTO.toEntity();
         boardRepository.save(boardEntity);
+    }
+
+    public List<BoardDTO> findListAll() {
+        BoardDTO boardDTO = new BoardDTO();
+        List<BoardEntity> boardEntities = boardRepository.findAll();
+        List<BoardDTO> boardDTOList = new ArrayList<>();
+        for(BoardEntity boardEntity : boardEntities) {
+            boardDTOList.add(boardDTO.toDTO(boardEntity));
+        }
+        return boardDTOList;
     }
 }
