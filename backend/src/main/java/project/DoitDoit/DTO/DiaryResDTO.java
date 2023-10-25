@@ -4,20 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import project.DoitDoit.entity.BoardEntity;
+import project.DoitDoit.entity.DiaryEntity;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BoardResDTO {
-    private String title;
+public class DiaryResDTO {
     private String content;
     private String today;
 
-    public BoardEntity toEntity() {
-        return BoardEntity.builder()
-                .title(title)
+    public DiaryEntity toEntity() {
+        return DiaryEntity.builder()
                 .content(content)
                 .today(today)
                 .build();

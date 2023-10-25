@@ -636,7 +636,7 @@
             </footer>
         </div>
         <!--그림일기 모달-->
-        <form class="mod_drawing_list">
+        <form class="mod_drawing_list" onsubmit="submitForm2(event)">
             <header>
 
                 <i class="fa-solid fa-xmark" style="color: black ;" onclick="close_mod_drawing_list()"></i>
@@ -660,6 +660,7 @@
         createCalendar(currentDate.getFullYear(), currentDate.getMonth() + 1);
         window.onload = function () {
             displayTodoList();
+            displayDairy();
         };
     </script>
 </body>

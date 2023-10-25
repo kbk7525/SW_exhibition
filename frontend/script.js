@@ -101,7 +101,7 @@ function submitForm(event) {
     const data = {
         title: taskName,
         content: todaylistWrite,
-        dDay: formattedDate,
+        today: formattedDate,
     };
     console.log(data);
     const serverUrl = "http://localhost:8082/mainpage/save";
@@ -121,6 +121,7 @@ function submitForm(event) {
                 todaylistDateInput.value = "";
                 const _mod_todaylist = document.querySelector(".todaylist")
                 _mod_todaylist.classList.remove("active");
+                window.location.href = "mainpage.html";
             } else {
                 alert("작업 추가 실패");
             }
@@ -133,30 +134,25 @@ function submitForm(event) {
 
 
 
-
-
-
-
-//그림일기 모달에서 데이터를 보내는 함수
 function submitForm2(event) {
     event.preventDefault();
 
     // 입력 필드에서 데이터 가져오기
     const DrawingListInput = document.querySelector(".mod_drawing_list_write").value;
     const DrawingListDate = document.querySelector(".mod_drawing_list_date").value;
-    const DrawingListSticker = document.querySelector(".mod_drawing_list_sticker");
+
     const DrawingListInputFocus = document.querySelector(".mod_drawing_list_write");
     const DrawingListDateFocus = document.querySelector(".mod_drawing_list_date");
 
     // 서버로 보낼 데이터 생성 (JSON 형식 또는 다른 형식으로도 가능)
     const data = {
-        DLI: DrawingListInput,
-        DLD: DrawingListDate,
-        DLS: DrawingListSticker,
+        content: DrawingListInput,
+        today: DrawingListDate,
+       
     };
 
     // 서버 URL 설정 (실제 백엔드 서버 URL로 대체해야 합니다)
-    const serverUrl = "http://localhost:8082/mainpage/save"; // 예시 URL
+    const serverUrl = "http://localhost:8082/mainpage/diarySave"; // 예시 URL
 
     // Fetch API를 사용하여 서버로 POST 요청 보내기
     fetch(serverUrl, {
@@ -175,6 +171,11 @@ function submitForm2(event) {
                 DrawingListDateFocus.value == "";
                 const mod_drawing_list = document.querySelector(".mod_drawing_list");
                 mod_drawing_list.classList.remove("active");
+                const diary = document.querySelector(".drawing_list_main");
+                diary.classList.remove(".active");
+                window.location.href = "mainpage.html";
+                diary.classList.add(".active");
+
 
 
             } else {
@@ -188,9 +189,55 @@ function submitForm2(event) {
 };
 
 
+function displayDairy() {
+    const dairyList = document.querySelector(".drawing_list_main_section");
+    dairyList.innerHTML = ""; // 기존 목록을 모두 제거
 
+    fetch('http://localhost:8082/mainpage/diaryPrint')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(item => {
+                const todoItem = document.createElement("div");
+                const todoItemList = document.createElement("div");
+                todoItemList.classList.add("todoItemList");
+                todoItem.classList.add("todo-item");
 
+                const xMark = document.createElement("i");
+                xMark.classList.add("fa-solid", "fa-xmark");
 
+                xMark.addEventListener("click", function () {
+                    const diaryId = item.diaryId;
+                    fetch(`http://localhost:8082/mainpage/diaryDelete/${diaryId}`, { // URL 경로 수정
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => {
+                            if (response.status === 200) {
+                                // 삭제에 성공하면 해당 아이템을 목록에서 제거
+                                dairyList.removeChild(todoItem);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                });
+
+                todoItemList.innerHTML = `
+                    <p>${item.today}</p>
+                    <p>${item.content}</p>
+                `;
+
+                todoItem.appendChild(todoItemList);
+                todoItem.appendChild(xMark);
+                dairyList.appendChild(todoItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
 
 
@@ -219,14 +266,14 @@ calenderHead.textContent = formattedDate;
 function openModalForDate(date) {
     // 모달 창 열기
     const modal = document.querySelector(".calender_select");
-    modal.style.display = "block";
+    modal.classList.add("active");
 
     // 모달 창 내용을 초기화
     const modalSection = document.querySelector(".mod_calender_select_section");
     modalSection.innerHTML = "";
 
     // 날짜를 서버로 보내 데이터를 가져오는 요청을 보냅니다.
-    fetch(`http://localhost:8082/mainpage/save${date}`, {
+    fetch(`http://localhost:8082/mainpage/calendar/${date}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -243,6 +290,7 @@ function openModalForDate(date) {
                 <p>${item.content}</p>
                 
             `;
+            console.log(todoItem);
             modalSection.appendChild(todoItem);
         });
     })
@@ -271,9 +319,10 @@ function createCalendar(year, month) {
             else if (nowDate <= lastDate.getDate()) {
                 cell.textContent = nowDate;
 
-                // 클릭 이벤트를 추가하여 모달 열기
-                cell.addEventListener("click", function () {
-                    openModalForDate(`${year}-${month}-${nowDate}`);
+                cell.addEventListener("click", function (event) {
+                    const clickedDate = event.target.textContent; // 클릭한 TD 요소의 텍스트 내용
+                    openModalForDate(`${year}-${month}-${clickedDate}`);
+                    console.log(`${year}-${month}-${clickedDate}`);
                 });
 
                 nowDate++;
@@ -363,100 +412,70 @@ function close_mod_drawing_list() {
     mod_drawing_list.classList.remove("active");
 }
 
-
 function displayTodoList() {
-    const data1 = [
-        {
-            "boardId": 1,
-            "title": "hi",
-            "content": "1234",
-            "today": "2023-09-26"
-        },
-        {
-            "boardId": 2,
-            "title": "hi",
-            "content": "1234",
-            "today": "2023-10-24"
-        },
-        {
-            "boardId": 3,
-            "title": "hi",
-            "content": "12dsdf",
-            "today": "2023-10-24"
-        },
-        {
-            "boardId": 4,
-            "title": "hi",
-            "content": "1234",
-            "today": "2023-10-18"
-        }
-    ]
-
     const todoList = document.getElementById("todoList");
     const todayDate = new Date();
-    const todoItemDate = document.createElement("div")
-    todoItemDate.innerHTML +=`
-                <p>${todayDate.toISOString().split('T')[0]}</p>
-                
-            `;;
+    const todoItemDate = document.createElement("div");
+    todoItemDate.innerHTML = `
+        <p>${todayDate.toISOString().split('T')[0]}</p>
+    `;
     todoItemDate.classList.add("todoItemDate");
     todoList.appendChild(todoItemDate);
-    data1.forEach(item => {
-        const todoItem = document.createElement("div");
-        const todoItemList = document.createElement("div");
-        
-        todoItemList.classList.add("todoItemList");
-        todoItem.classList.add("todo-item");
 
-        // 새로운 <i> 요소를 생성하고 속성을 설정합니다.
-        const xMark = document.createElement("i");
-        xMark.classList.add("fa-solid", "fa-xmark");
+    // 서버에서 데이터를 가져오기 위한 GET 요청
+    fetch('http://localhost:8082/mainpage/print') // 서버의 주소와 엔드포인트를 맞춰야 합니다.
+        .then(response => response.json()) // JSON 데이터로 파싱
+        .then(data => {
+            data.forEach(item => {
+                const todoItem = document.createElement("div");
+                const todoItemList = document.createElement("div");
 
-        // xMark를 클릭했을 때 해당 todoItem을 제거하는 이벤트 리스너를 추가합니다.
-        xMark.addEventListener("click", function () {
-            // 클라이언트에서 서버로 삭제 요청을 보냅니다.
-            const boardId = item.boardId; // 삭제할 항목의 boardId 가져오기
-            fetch(`http://localhost:8082/mainpage/save${boardId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => {
-                    if (response.status === 200) {
-                        // 서버에서 삭제가 성공한 경우 클라이언트에서도 삭제
-                        todoList.removeChild(todoItem);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
+                todoItemList.classList.add("todoItemList");
+                todoItem.classList.add("todo-item");
+
+                const xMark = document.createElement("i");
+                xMark.classList.add("fa-solid", "fa-xmark");
+
+                xMark.addEventListener("click", function () {
+                    const boardId = item.boardId;
+                    fetch(`http://localhost:8082/mainpage/delete/${boardId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                        .then(response => {
+                            if (response.status === 200) {
+                                todoList.removeChild(todoItem);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
                 });
+
+                const todayDate = new Date();
+                const itemDate = new Date(item.today);
+
+                if (
+                    todayDate.getFullYear() === itemDate.getFullYear() &&
+                    todayDate.getMonth() === itemDate.getMonth() &&
+                    todayDate.getDate() === itemDate.getDate()
+                ) {
+                    todoItemList.innerHTML += `
+                        <h3>${item.title}</h3>
+                        <p>${item.content}</p>
+                    `;
+
+                    todoList.appendChild(todoItem);
+                    todoItem.appendChild(todoItemList);
+                    todoItem.appendChild(xMark);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
-
-        // 현재 날짜를 가져옵니다.
-        const todayDate = new Date();
-        // item.today와 현재 날짜(todayDate)를 비교합니다.
-        const itemDate = new Date(item.today);
-
-        if (
-            todayDate.getFullYear() === itemDate.getFullYear() &&
-            todayDate.getMonth() === itemDate.getMonth() &&
-            todayDate.getDate() === itemDate.getDate()
-        ) {
-            // 만약 item.today가 오늘 날짜와 일치하면 아래 내용을 출력합니다.
-            todoItemList.innerHTML += `
-                
-                <h3>${item.title}</h3>
-                <p>${item.content}</p>
-                
-            `;
-            
-            
-            
-            todoList.appendChild(todoItem);
-            todoItem.appendChild(todoItemList);
-            todoItem.appendChild(xMark); // todoItem을 todoList에 추가합니다.
-        }
-    });
 }
+
 
