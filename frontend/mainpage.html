@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+
     <script src="https://kit.fontawesome.com/6e7455cbd0.js" crossorigin="anonymous"></script>
     <style>
         body {
             background: #FBE7E4;
             margin: 0 auto;
         }
+
         /*메인 페이지 */
         .mainpage {
             margin: 0 auto;
@@ -21,8 +22,18 @@
             left: 50%;
             transform: translate(0, 5%);
             border-radius: 30px;
+            overflow: scroll;
+            overflow-x: hidden;
 
+        }
 
+        .mainpage::-webkit-scrollbar {
+            width: 0em;
+            background-color: #F5F5F5;
+        }
+
+        .mainpage::-webkit-scrollbar-thumb {
+            background-color: transparent;
         }
 
         .main_topnav {
@@ -96,7 +107,7 @@
 
         }
 
-         /*오늘 할일 */
+        /*오늘 할일 */
 
         .todaylist {
             margin: 0 auto;
@@ -126,7 +137,8 @@
             height: 220px;
             opacity: 1;
         }
-        .todaylist>section>input:focus{
+
+        .todaylist>section>input:focus {
             outline: none;
         }
 
@@ -140,7 +152,7 @@
         }
 
         .todaylist>header>input {
-            
+
             border: none;
             text-align: left;
             font-weight: 700;
@@ -148,11 +160,13 @@
             margin-top: 10px;
             margin-bottom: 0;
         }
-        .todaylist>header>input::placeholder{
+
+        .todaylist>header>input::placeholder {
             color: #d3cfcf;
-           
+
         }
-        .todaylist>header>input:focus{
+
+        .todaylist>header>input:focus {
             outline: none;
         }
 
@@ -194,7 +208,8 @@
             font-size: 15px;
             font-weight: 600;
         }
-         /*달력 */
+
+        /*달력 */
 
         .calender_main {
             position: fixed;
@@ -221,10 +236,11 @@
 
         .mod_calender_section {
             margin: 0 auto;
-            
+
 
         }
-        .mod_calender_section> .calender_head td{
+
+        .mod_calender_section>.calender_head td {
             font-size: 23px;
             font-weight: 600;
             background-color: rgb(143, 142, 142);
@@ -232,7 +248,8 @@
             height: 50px;
             border-radius: 10px;
         }
-        .mod_calender_section> .calender_body td {
+
+        .mod_calender_section>.calender_body td {
             font-size: 15px;
             padding: 16px;
             background-color: #DE483A;
@@ -241,16 +258,17 @@
             font-weight: 600;
 
         }
-        .mod_calender_head{
+
+        .mod_calender_head {
             height: 45px;
             text-align: center;
             font-size: 30px;
             font-weight: 700;
             line-height: 45px;
-            
+
         }
-        
-        .calender_main > header{
+
+        .calender_main>header {
             display: flex;
             justify-content: space-between;
             padding-left: 40px;
@@ -260,10 +278,12 @@
             align-items: center;
             background-color: #DE483A;
         }
-        .calender_main.active{
+
+        .calender_main.active {
             height: 530px;
             opacity: 1;
         }
+
         .calender_select {
             position: fixed;
             left: 50%;
@@ -279,11 +299,13 @@
             overflow: hidden;
 
         }
-        .calender_select.active{
+
+        .calender_select.active {
             height: 530px;
             opacity: 1;
         }
-        .calender_select > header{
+
+        .calender_select>header {
             display: flex;
             justify-content: space-between;
             padding-left: 40px;
@@ -293,18 +315,19 @@
             align-items: center;
             background-color: #DE483A;
         }
-         /*달력 선택 */
-        .mod_calender_select_head{
+
+        /*달력 선택 */
+        .mod_calender_select_head {
             height: 45px;
             text-align: center;
             font-size: 30px;
             font-weight: 700;
             line-height: 45px;
-            
+
         }
 
-         /*그림일기 */
-         .drawing_list_main{
+        /*그림일기 */
+        .drawing_list_main {
             position: fixed;
             left: 50%;
             top: 50%;
@@ -320,25 +343,30 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-         }
-         .drawing_list_main.active{
+        }
+
+        .drawing_list_main.active {
             opacity: 1;
             height: 700px;
-         }
-         .drawing_list_main>header{
+        }
+
+        .drawing_list_main>header {
             background-color: #DE483A;
             height: 60px;
             display: flex;
             justify-content: space-between;
-         }
-         .drawing_list_main>section{
+        }
+
+        .drawing_list_main>section {
             height: 400px;
-         }
-         .drawing_list_main>footer{
+        }
+
+        .drawing_list_main>footer {
             display: flex;
             justify-content: end;
-         }
-         .drawing_list_main .drawing_button{
+        }
+
+        .drawing_list_main .drawing_button {
             width: 150px;
             height: 60px;
             color: white;
@@ -349,9 +377,10 @@
             margin-bottom: 20px;
             border-radius: 20px;
             border: none;
-         }
-         /*그림 일기 모달*/
-         .mod_drawing_list {
+        }
+
+        /*그림 일기 모달*/
+        .mod_drawing_list {
             margin: 0 auto;
             width: 600px;
             height: 0px;
@@ -379,7 +408,8 @@
             height: 600px;
             opacity: 1;
         }
-        .mod_drawing_list>section>input:focus{
+
+        .mod_drawing_list>section>input:focus {
             outline: none;
         }
 
@@ -439,15 +469,46 @@
             font-weight: 600;
 
         }
-        .drawing_list_sticker{
+
+     
+
+        .todo-item {
+            font-size: 15px;
+            border-radius: 20px;
+            border: 1px solid #d3cfcf;
+            margin: 5px;
             display: flex;
             justify-content: space-between;
-            width: 500px;
+            padding-right: 10px;
+            padding-left: 10px;
+            padding-top: 5px;
+            height: 100px;
         }
-        .drawing_list_sticker > div{
-            width: 50px;
-            height: 50px;
-            background: #DE483A;
+        .todo-item > .fa-solid{
+            font-size: 20px;
+            
+        }
+        .todo-item > .fa-solid:hover{
+            font-size: 25px;
+            margin: 0px;
+            padding-right: 0px;
+            
+        }
+        .todoItemList{
+            display: flex;
+            flex-direction: column;
+            
+            
+        }
+        .todoItemList > h3{
+           font-size: 20px;
+           margin-top: 0;
+           margin-bottom: 0px;
+           font-weight: 700;
+        }
+        
+        .todoItemDate{
+            font-weight: 700;
         }
     </style>
 </head>
@@ -475,7 +536,7 @@
                 </div>
                 <div class="third_section">
                     <i class="fa-solid fa-pen"></i>
-                    <span onclick="open_drawing_list()">그림일기</span>
+                    <span onclick="open_drawing_list()">일기</span>
                 </div>
                 <div class="fourth_section">
                     <i class="fa-regular fa-bookmark"></i>
@@ -485,6 +546,7 @@
             <div class="main_right_section" style="margin-top: 15px;">
                 <h1>List</h1>
                 <hr>
+                <div id="todoList"></div> <!-- 투두 리스트가 들어갈 div -->
             </div>
         </section>
         <!--오늘 할 일 모달창-->
@@ -498,10 +560,10 @@
             </section>
             <footer>
                 <input type="date" id="todaylist_date" class="todaylist_date" required>
-                <button class="todaylist_upload" >작업 추가</button>
+                <button class="todaylist_upload">작업 추가</button>
             </footer>
         </form>
-        
+
         <!--달력 모달창-->
 
         <div class="calender_main">
@@ -509,21 +571,21 @@
                 <div class="mod_calender_head">
 
                 </div>
-                <div>   
-                    <i class="fa-solid fa-xmark" onclick="closecalender()" ></i>
+                <div>
+                    <i class="fa-solid fa-xmark" onclick="closecalender()"></i>
                 </div>
             </header>
             <section>
                 <table class="mod_calender_section">
                     <thead class="calender_head">
                         <tr>
-                            <td onclick="open_calender_select()" >일</td>
-                            <td >월</td>
-                            <td >화</td>
+                            <td onclick="open_calender_select()">일</td>
+                            <td>월</td>
+                            <td>화</td>
                             <td>수</td>
-                            <td >목</td>
-                            <td >금</td>
-                            <td >토</td>
+                            <td>목</td>
+                            <td>금</td>
+                            <td>토</td>
                         </tr>
                     </thead>
                     <tbody class="calender_body">
@@ -536,68 +598,58 @@
         <div class="calender_select">
             <header>
                 <div class="mod_calender_select_head">
-                    
+
                 </div>
-                <div>   
+                <div>
                     <i class="fa-solid fa-xmark" onclick="close_calender_select()"></i>
                 </div>
-                
+
             </header>
             <section>
                 <div class="mod_calender_select_section">
 
                 </div>
-                
+
             </section>
         </div>
-         <!--그림일기-->
-         <div class="drawing_list_main">
+        <!--그림일기-->
+        <div class="drawing_list_main">
             <header>
                 <div style="padding: 20px; color: white; font-weight: 600; font-size: 20px;">
                     그림 일기
                 </div>
-                <div>   
+                <div>
                     <i class="fa-solid fa-xmark" onclick="close_drawing_list()" style="padding: 20px;"></i>
                 </div>
-                
+
             </header>
             <section>
                 <div class="drawing_list_main_section">
-                    
+
                 </div>
-                
+
             </section>
             <footer>
                 <div class="drawing_list_main_footer">
-                   <button class="drawing_button" onclick="open_mod_drawing_list()">일기 추가</button>
+                    <button class="drawing_button" onclick="open_mod_drawing_list()">일기 추가</button>
                 </div>
             </footer>
         </div>
         <!--그림일기 모달-->
         <form class="mod_drawing_list">
             <header>
-                
+
                 <i class="fa-solid fa-xmark" style="color: black ;" onclick="close_mod_drawing_list()"></i>
             </header>
             <section>
                 <input type="text" id="mod_drawing_list_write" class="mod_drawing_list_write" required>
             </section>
             <footer>
-                <input type="date" id="mod_drawing_list_date" class="mod_drawing_list_date" data-placeholder="마감날짜" required>
-                <button class="upload_drawing_list" >등록</button>
+                <input type="date" id="mod_drawing_list_date" class="mod_drawing_list_date" data-placeholder="마감날짜"
+                    required>
+                <button class="upload_drawing_list">등록</button>
             </footer>
-            <div class="drawing_list_sticker">
-                <div id="sticker1">
-
-                </div>
-                <div id="sticker2">
-
-                </div>
-                <div id="sticker3">
-
-                </div>
-                
-            </div>
+            
         </form>
 
 
@@ -606,6 +658,10 @@
     <script>
         const currentDate = new Date();
         createCalendar(currentDate.getFullYear(), currentDate.getMonth() + 1);
+        window.onload = function () {
+            displayTodoList();
+        };
     </script>
 </body>
-</html> 
+
+</html>
