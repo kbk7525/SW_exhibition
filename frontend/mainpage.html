@@ -243,16 +243,25 @@
         .mod_calender_section>.calender_head td {
             font-size: 23px;
             font-weight: 600;
-            background-color: rgb(143, 142, 142);
+            background-color: rgb(222, 216, 216);
             text-align: center;
             height: 50px;
             border-radius: 10px;
         }
 
-        .mod_calender_section>.calender_body td {
+        .mod_calender_section>.calender_body .first-column  {
             font-size: 15px;
             padding: 16px;
             background-color: #DE483A;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 600;
+
+        }
+        .mod_calender_section>.calender_body td:not(.first-column) {
+            font-size: 15px;
+            padding: 16px;
+            background-color: rgb(222, 216, 216);
             border-radius: 30px;
             text-align: center;
             font-weight: 600;
@@ -265,7 +274,7 @@
             font-size: 30px;
             font-weight: 700;
             line-height: 45px;
-
+            
         }
 
         .calender_main>header {
@@ -389,7 +398,7 @@
             border: 2px solid #D7D0D0;
             border-radius: 30px;
             position: fixed;
-            top: 50%;
+            top: 55%;
             left: 50%;
             transform: translate(-50%, -50%);
             display: flex;
@@ -407,6 +416,7 @@
         .mod_drawing_list.active {
             height: 600px;
             opacity: 1;
+            top: 50%;
         }
 
         .mod_drawing_list>section>input:focus {
@@ -470,7 +480,7 @@
 
         }
 
-     
+
 
         .todo-item {
             font-size: 15px;
@@ -484,31 +494,124 @@
             padding-top: 5px;
             height: 100px;
         }
-        .todo-item > .fa-solid{
+
+        .todo-item>.fa-solid {
             font-size: 20px;
-            
+
         }
-        .todo-item > .fa-solid:hover{
+
+        .todo-item>.fa-solid:hover {
             font-size: 25px;
             margin: 0px;
             padding-right: 0px;
-            
+
         }
-        .todoItemList{
+
+        .todoItemList {
             display: flex;
             flex-direction: column;
-            
-            
+
+
         }
-        .todoItemList > h3{
-           font-size: 20px;
-           margin-top: 0;
-           margin-bottom: 0px;
-           font-weight: 700;
-        }
-        
-        .todoItemDate{
+
+        .todoItemList>h3 {
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 0px;
             font-weight: 700;
+        }
+
+        .todoItemDate {
+            font-weight: 700;
+        }
+
+        a {
+            color: white;
+        }
+
+
+        /*즐겨찾기 css */
+        .header {
+            background: #DE483A;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            padding-left: 25px;
+            padding-right: 20px;
+            margin: 0;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .pencil-icon {
+            font-family: "Arial";
+            font-size: 24px;
+            color: white;
+            padding-right: 10px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 20;
+        }
+
+        .main_container {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 700px;
+            height: 0px;
+            border: 1px solid rgb(143, 142, 142);
+            border-radius: 50px;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+        }
+         .main_container.active{
+            height: 500px;
+            opacity: 1;
+         }
+
+        .box_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: scroll;
+        }
+
+        .box {
+            height: 100px;
+            width: 380px;
+            background: #E9DFDF;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border: 1px solid black;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 30px;
+            border-color: gray;
+            
+        }
+
+        .pencil-icon {
+            font-family: "Arial";
+            font-size: 24px;
+            color: black;
+            padding-right: 10px;
+            margin: 10px;
         }
     </style>
 </head>
@@ -519,8 +622,9 @@
             <div class="main_topnav">
                 <div class="main_left_topnav">Doit Doit</div>
                 <div class="main_right_topnav">
-                    <i class="fa-solid fa-bell"></i>
-                    <i class="fa-solid fa-gear" style="margin-left: 15px;"></i>
+                    <a href="manual.html"><i class="fa-solid fa-scroll" style="margin-right: 15px;"></i></a>
+                    <a href=""><i class="fa-solid fa-bell"></i></a>
+                    <a href=""> <i class="fa-solid fa-gear" style="margin-left: 15px;"></i></a>
                 </div>
             </div>
         </header>
@@ -540,7 +644,7 @@
                 </div>
                 <div class="fourth_section">
                     <i class="fa-regular fa-bookmark"></i>
-                    <span>즐겨찾기</span>
+                    <span onclick="open_mod_star()">즐겨찾기</span>
                 </div>
             </div>
             <div class="main_right_section" style="margin-top: 15px;">
@@ -569,7 +673,7 @@
         <div class="calender_main">
             <header>
                 <div class="mod_calender_head">
-
+                    <h3 style="margin-top: 0; color: white;">calendar</h3>
                 </div>
                 <div>
                     <i class="fa-solid fa-xmark" onclick="closecalender()"></i>
@@ -579,7 +683,7 @@
                 <table class="mod_calender_section">
                     <thead class="calender_head">
                         <tr>
-                            <td onclick="open_calender_select()">일</td>
+                            <td onclick="open_calender_select()" style="background-color: #DE483A;">일</td>
                             <td>월</td>
                             <td>화</td>
                             <td>수</td>
@@ -649,8 +753,37 @@
                     required>
                 <button class="upload_drawing_list">등록</button>
             </footer>
-            
+
         </form>
+        <!--즐겨찾기 모달-->
+        <div class="main_container">
+            <div class="form-box">
+                <div class="header">
+                    <h1>즐겨찾기</h1>
+                    <i class="fa-solid fa-xmark" style="color: black ;" onclick="close_mod_star()"></i>
+
+                </div>
+                <form>
+                    <div class="container">
+                        <div class="box_container" id="boxContainer">
+                            <div class="box">
+                                <div class="pencil-icon">✏️</div>
+                            </div>
+                            <div class="box">
+                                <div class="pencil-icon">✏️</div>
+                            </div>
+                            <div class="box">
+                                <div class="pencil-icon">✏️</div>
+                            </div>
+                            <div class="box">
+                                <div class="pencil-icon">✏️</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="star.js"></script>
 
 
     </div>
