@@ -115,7 +115,7 @@ function submitForm(event) {
     })
         .then((responseData) => {
             if (responseData.status === 200) {
-                alert("작업 추가 성공");
+                // alert("작업 추가 성공");
                 taskNameInput.value = "";
                 todaylistWriteInput.value = "";
                 todaylistDateInput.value = "";
@@ -165,7 +165,7 @@ function submitForm2(event) {
         .then((responseData) => {
             // 서버 응답에 따른 처리
             if (responseData.status === 200) {
-                alert("작업 추가 성공");
+                // alert("작업 추가 성공");
                 // 다음 로직을 추가하세요 (예: 페이지 리디렉션)
                 DrawingListInputFocus.value == "";
                 DrawingListDateFocus.value == "";
@@ -180,6 +180,7 @@ function submitForm2(event) {
 
             } else {
                 alert("작업 추가 실패");
+
             }
         })
         .catch((error) => {
@@ -258,7 +259,7 @@ function close_todaylist() {
 /*달력 위에 년 월 */
 const now = new Date();
 const options = { year: 'numeric', month: 'long' };
-const formattedDate = now.toLocaleDateString(undefined, options);
+const formattedDate = now.toLocaleDateString(options);
 
 const calenderHead = document.querySelector(".mod_calender_head");
 calenderHead.textContent = formattedDate;
@@ -332,12 +333,17 @@ function createCalendar(year, month) {
                 nextmonthdate++;
             }
             row.appendChild(cell);
+            if (j == 0) {
+                const firstColumnCell = row.querySelector("td");
+                firstColumnCell.classList.add("first-column");
+            }
         }
 
         calenderBody.appendChild(row);
         if (nowDate > lastDate.getDate()) {
             break;
         }
+        
     }
 }
 
@@ -353,6 +359,15 @@ function opencalender() {
 }
 function closecalender() {
     const modCalender = document.querySelector(".calender_main");
+    modCalender.classList.remove("active");
+}
+function open_mod_star() {
+    const modCalender = document.querySelector(".main_container");
+    modCalender.classList.add("active");
+
+}
+function close_mod_star() {
+    const modCalender = document.querySelector(".main_container");
     modCalender.classList.remove("active");
 }
 
@@ -477,5 +492,4 @@ function displayTodoList() {
             console.error('Error:', error);
         });
 }
-
 
