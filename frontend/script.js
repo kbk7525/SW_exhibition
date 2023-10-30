@@ -492,4 +492,3 @@ function displayTodoList() {
             console.error('Error:', error);
         });
 }
-
