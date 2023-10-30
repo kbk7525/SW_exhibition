@@ -5,7 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6e7455cbd0.js" crossorigin="anonymous"></script>
     <style>
         body {
@@ -78,21 +86,37 @@
             font-size: 30px;
         }
 
+
+
+
         .mainpage .main_right_section>hr {
             width: 500px;
             margin-top: -20px;
 
         }
 
+        .mainpage .main_right_section>h1 {
+            background-color: #DE483A;
+            padding-left: 10px;
+            border-radius: 10px;
+            color: white;
+
+
+        }
+
         .mainpage>section span {
             color: #C9C3C3;
             text-align: center;
-            font-family: Inter;
-            font-size: 20px;
+            font-family: 'Dongle', sans-serif;
+            font-size: 30px;
+            align-items: center;
             font-style: normal;
             font-weight: 700;
-            line-height: normal;
+            line-height: 45px;
             margin-left: 10px;
+        }
+        p{  
+            font-family: 'Dongle', sans-serif;
         }
 
         .mainpage>section i {
@@ -249,7 +273,7 @@
             border-radius: 10px;
         }
 
-        .mod_calender_section>.calender_body .first-column  {
+        .mod_calender_section>.calender_body .first-column {
             font-size: 15px;
             padding: 16px;
             background-color: #DE483A;
@@ -258,6 +282,7 @@
             font-weight: 600;
 
         }
+
         .mod_calender_section>.calender_body td:not(.first-column) {
             font-size: 15px;
             padding: 16px;
@@ -274,7 +299,7 @@
             font-size: 30px;
             font-weight: 700;
             line-height: 45px;
-            
+
         }
 
         .calender_main>header {
@@ -577,12 +602,13 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            
+
         }
-         .main_container.active{
+
+        .main_container.active {
             height: 500px;
             opacity: 1;
-         }
+        }
 
         .box_container {
             display: flex;
@@ -603,7 +629,7 @@
             justify-content: space-between;
             border-radius: 30px;
             border-color: gray;
-            
+
         }
 
         .pencil-icon {
@@ -620,7 +646,7 @@
     <div class="mainpage">
         <header>
             <div class="main_topnav">
-                <div class="main_left_topnav">Doit Doit</div>
+                <div class="main_left_topnav" style="font-family: 'Lilita One', sans-serif;">Doit Doit</div>
                 <div class="main_right_topnav">
                     <a href="manual.html"><i class="fa-solid fa-scroll" style="margin-right: 15px;"></i></a>
                     <a href=""><i class="fa-solid fa-bell"></i></a>
@@ -630,7 +656,7 @@
         </header>
         <section>
             <div class="main_left_section">
-                <div class="first_section">
+                <div class="first_section" style="align-content: center;">
                     <i class="fa-regular fa-clipboard"></i>
                     <span onclick="open_todaylist()">오늘 할 일</span>
                 </div>
@@ -648,7 +674,7 @@
                 </div>
             </div>
             <div class="main_right_section" style="margin-top: 15px;">
-                <h1>List</h1>
+                <h1 style="font-family: 'Lilita One', sans-serif;">List</h1>
                 <hr>
                 <div id="todoList"></div> <!-- 투두 리스트가 들어갈 div -->
             </div>
@@ -673,7 +699,7 @@
         <div class="calender_main">
             <header>
                 <div class="mod_calender_head">
-                    <h3 style="margin-top: 0; color: white;">calendar</h3>
+                    <h3 style="margin-top: 0; color: white;font-family: 'Lilita One', sans-serif;">calendar</h3>
                 </div>
                 <div>
                     <i class="fa-solid fa-xmark" onclick="closecalender()"></i>
@@ -719,8 +745,8 @@
         <!--그림일기-->
         <div class="drawing_list_main">
             <header>
-                <div style="padding: 20px; color: white; font-weight: 600; font-size: 20px;">
-                    그림 일기
+                <div style="padding-left:30px; color: white; font-weight: 600; font-size: 40px;font-family: 'Dongle', sans-serif;">
+                일기
                 </div>
                 <div>
                     <i class="fa-solid fa-xmark" onclick="close_drawing_list()" style="padding: 20px;"></i>
@@ -759,7 +785,7 @@
         <div class="main_container">
             <div class="form-box">
                 <div class="header">
-                    <h1>즐겨찾기</h1>
+                    <h1 style="font-family: 'Dongle', sans-serif; font-size: 30px;">즐겨찾기</h1>
                     <i class="fa-solid fa-xmark" style="color: black ;" onclick="close_mod_star()"></i>
 
                 </div>
