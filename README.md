@@ -1,4 +1,5 @@
-<h2>DoitDoit todoList</h2>
+<h1>DoitDoit todoList</h1>
+<h2>주요기능</h2>
 <h3>메인페이지</h3>
 <img width="1414" alt="스크린샷 2023-11-06 오후 11 51 25" src="https://github.com/kbk7525/SW_exhibition/assets/54385416/b3e4d987-e3f6-4952-9956-6456d3f7c049">
 <h3>할 일 리스트 생성</h3>
@@ -11,3 +12,12 @@
 <img width="1349" alt="스크린샷 2023-11-06 오후 11 53 52" src="https://github.com/kbk7525/SW_exhibition/assets/54385416/4c96048b-21e0-4c48-98ec-9344d7e318f7">
 <h3>사용설명서</h3>
 <img width="1501" alt="스크린샷 2023-11-06 오후 11 54 17" src="https://github.com/kbk7525/SW_exhibition/assets/54385416/965bab93-6e1e-43cc-95a1-f0b156afc719">
+
+<h1>사용기술</h1>
+<li>
+  <ul>html</ul>
+  <ul>css</ul>
+  <ul>javaScript</ul>
+  <ul>Spring boot</ul>
+  <ul>mySql</ul>
+</li>
