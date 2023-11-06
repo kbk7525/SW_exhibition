@@ -1,6 +1,7 @@
 <h1>DoitDoit todoList</h1>
 <h2>소개</h2>
 RESTful api를 사용해서 만들어본 todoList 웹 어플리케이션입니다.
+씨애랑 동아리 전시회 출품작!
 <h2>주요기능</h2>
 <h3>메인페이지</h3>
 <img width="1414" alt="스크린샷 2023-11-06 오후 11 51 25" src="https://github.com/kbk7525/SW_exhibition/assets/54385416/b3e4d987-e3f6-4952-9956-6456d3f7c049">
