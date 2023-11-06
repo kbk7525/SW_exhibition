@@ -16,10 +16,10 @@ RESTful api를 사용해서 만들어본 todoList 웹 어플리케이션입니�
 <img width="1501" alt="스크린샷 2023-11-06 오후 11 54 17" src="https://github.com/kbk7525/SW_exhibition/assets/54385416/965bab93-6e1e-43cc-95a1-f0b156afc719">
 
 <h1>사용기술</h1>
-<li>
-  <ul>html</ul>
-  <ul>css</ul>
-  <ul>javaScript</ul>
-  <ul>Spring boot</ul>
-  <ul>mySql</ul>
-</li>
+<ul>
+  <li>html</li>
+  <li>css</li>
+  <li>javaScript</li>
+  <li>Spring boot</li>
+  <li>mySql</li>
+</ul>
