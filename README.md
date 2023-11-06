@@ -1,6 +1,6 @@
 <h1>DoitDoit todoList</h1>
 <h2>소개</h2>
-RESTful api를 사용해서 만들어본 todoList 웹 어플리케이션입니다.
+RESTful api를 사용해서 만들어본 todoList 웹 어플리케이션입니다.<br>
 씨애랑 동아리 전시회 출품작!
 <h2>주요기능</h2>
 <h3>메인페이지</h3>
